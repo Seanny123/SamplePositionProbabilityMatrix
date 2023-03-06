@@ -15,15 +15,12 @@ pub fn searchSorted(arr: []const f64, sort_val: f64) usize {
 
         if (sort_val < arr[mid]) {
             high = mid;
-        }
-        else
-        {
+        } else {
             low = mid + 1;
         }
     }
     return low;
 }
-
 
 pub fn cumsum(probs: []const f64, cdf: []f64) void {
     std.debug.assert(probs.len == cdf.len);
@@ -40,7 +37,6 @@ pub fn cumsum(probs: []const f64, cdf: []f64) void {
         cdf[index] = cdf[index] / total;
     }
 }
-
 
 pub fn chooseWeighted(comptime T: type, arr: []const T, probs: []const f64, cdf: []f64, chosen: []T, rand: *const std.rand.Random) void {
     cumsum(probs, cdf);
@@ -65,7 +61,7 @@ pub fn main() !void {
     const rand = prng.random();
 
     var arr: []const u8 = "world";
-    const probs: []const f64 = &[_]f64{0.2, 0.2, 0.1, 0.1, 0.4};
+    const probs: []const f64 = &[_]f64{ 0.2, 0.2, 0.1, 0.1, 0.4 };
     const cdf = try allocator.alloc(f64, probs.len);
     const chosen = try allocator.alloc(u8, 10000);
 
